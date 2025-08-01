@@ -37,6 +37,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'delete') {
                             <tr>
                                 <th>No</th>
                                 <th>Kode Slot</th>
+                                <th>Nama Slot</th>
                                 <th>Status</th>
                                 <th>Aksi</th>
                             </tr>
@@ -48,6 +49,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'delete') {
                                 <tr>
                                     <td><?= $no ?></td>
                                     <td><?= $data['slot_code'] ?></td>
+                                    <td><?= $data['name'] ?></td>
                                     <td><?= $data['status'] ? 'Tersedia' : 'Tidak Tersedia' ?></td>
                                     <td>
                                         <div class="btn-group">

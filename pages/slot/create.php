@@ -42,6 +42,10 @@ if (isset($_POST['submit'])) {
                                 <input type="text" class="form-control" name="slot_code" placeholder="Kode Slot">
                             </div>
                             <div class="mb-3">
+                                <label for="">Nama Slot</label>
+                                <input type="text" class="form-control" name="name" placeholder="Nama Slot">
+                            </div>
+                            <div class="mb-3">
                                 <label for="">Status</label>
                                 <select name="status" class="form-control">
                                     <option value="1">Aktif</option>

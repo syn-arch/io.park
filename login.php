@@ -12,13 +12,25 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
     $password = $_POST['password'];
 
     $row = mysqli_query($conn, "SELECT * FROM users WHERE email = '$email'");
+    $row_member = mysqli_query($conn, "SELECT * FROM members WHERE email = '$email'");
     if (mysqli_num_rows($row) === 1) {
         $user = mysqli_fetch_assoc($row);
         if(password_verify($password, $user['password'])) {
             $_SESSION['user'] = $user;
+            $_SESSION['role'] = $user['role'];
             header('Location: index.php?page=dashboard');
             exit();
         }else{
+            $error = "Password anda salah.";
+        }
+    } else if(mysqli_num_rows($row_member) === 1){
+        $member = mysqli_fetch_assoc($row_member);
+        if (password_verify($password, $member['password'])) {
+            $_SESSION['user'] = $member;
+            $_SESSION['role'] = 'member';
+            header('Location: index.php?page=dashboard');
+            exit();
+        } else {
             $error = "Password anda salah.";
         }
     } else {

@@ -5,7 +5,7 @@
         <div class="small-box text-bg-primary">
             <div class="inner">
                 <h3>150</h3>
-                <p>New Orders</p>
+                <p>Data User</p>
             </div>
             <svg
                 class="small-box-icon"
@@ -29,8 +29,8 @@
         <!--begin::Small Box Widget 2-->
         <div class="small-box text-bg-success">
             <div class="inner">
-                <h3>53<sup class="fs-5">%</sup></h3>
-                <p>Bounce Rate</p>
+                <h3>53</h3>
+                <p>Data Member</p>
             </div>
             <svg
                 class="small-box-icon"
@@ -55,7 +55,7 @@
         <div class="small-box text-bg-warning">
             <div class="inner">
                 <h3>44</h3>
-                <p>User Registrations</p>
+                <p>Data Slot</p>
             </div>
             <svg
                 class="small-box-icon"
@@ -80,7 +80,7 @@
         <div class="small-box text-bg-danger">
             <div class="inner">
                 <h3>65</h3>
-                <p>Unique Visitors</p>
+                <p>Data Transaksi</p>
             </div>
             <svg
                 class="small-box-icon"
@@ -112,7 +112,7 @@
     <div class="col-lg-7 connectedSortable">
         <div class="card mb-4">
             <div class="card-header">
-                <h3 class="card-title">Sales Value</h3>
+                <h3 class="card-title">Transaksi</h3>
             </div>
             <div class="card-body">
                 <div id="revenue-chart"></div>

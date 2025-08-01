@@ -6,13 +6,11 @@ if (isset($_POST['submit'])) {
     $app_name = $_POST['app_name'];
     $app_description = $_POST['app_description'];
     $telegram_bot_key = $_POST['telegram_bot_key'];
-    $telegram_chat_id = $_POST['telegram_chat_id'];
 
     $row = mysqli_query($conn, "UPDATE setting SET 
         app_name = '$app_name',
         app_description = '$app_description',
-        telegram_bot_key = '$telegram_bot_key',
-        telegram_chat_id = '$telegram_chat_id'
+        telegram_bot_key = '$telegram_bot_key'
     ");
 
     if ($_FILES['app_logo']['name']) {
@@ -75,10 +73,6 @@ if (isset($_POST['submit'])) {
                             <div class="mb-3">
                                 <label for="">Telegram Bot Key</label>
                                 <input type="text" class="form-control" name="telegram_bot_key" value="<?= $setting['telegram_bot_key'] ?>" placeholder="Telegram Bot Key">
-                            </div>
-                            <div class="mb-3">
-                                <label for="">Telegram Chat ID</label>
-                                <input type="text" class="form-control" name="telegram_chat_id" value="<?= $setting['telegram_chat_id'] ?>" placeholder="Telegram Chat ID">
                             </div>
                             <div class="mb-3">
                                 <input type="submit" name="submit" class="btn btn-primary d-block w-100">

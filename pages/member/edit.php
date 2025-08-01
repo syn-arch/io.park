@@ -14,6 +14,7 @@ if (isset($_POST['submit'])) {
     $plat_number = $_POST['plat_number'];
     $balance = $_POST['balance'];
     $rfid = $_POST['rfid'];
+    $chat_id = $_POST['chat_id'];
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
     if ($_POST['password']) {
@@ -33,7 +34,8 @@ if (isset($_POST['submit'])) {
         plat_number = '$plat_number',
         status = '$status',
         balance = '$balance',
-        rfid = '$rfid'
+        rfid = '$rfid',
+        chat_id = '$chat_id'
         WHERE id = $id
     ");
 
@@ -123,6 +125,10 @@ if (isset($_POST['submit'])) {
                             <div class="mb-3">
                                 <label for="">RFID</label>
                                 <input type="text" class="form-control" name="rfid" value="<?= $member['rfid'] ?>" value="0" placeholder="RFID">
+                            </div>
+                            <div class="mb-3">
+                                <label for="">ID Chat</label>
+                                <input type="text" class="form-control" name="chat_id" value="<?= $member['chat_id'] ?>" value="0" placeholder="ID Chat">
                             </div>
                         </div>
                     </div>

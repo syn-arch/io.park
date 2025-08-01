@@ -40,6 +40,12 @@
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 <script src="https://cdn.datatables.net/2.3.2/js/dataTables.js"></script>
 <script src="https://cdn.datatables.net/2.3.2/js/dataTables.bootstrap5.js"></script>
+
+<!-- apexcharts -->
+<script
+    src="https://cdn.jsdelivr.net/npm/apexcharts@3.37.1/dist/apexcharts.min.js"
+    integrity="sha256-+vh8GkaU7C9/wbSLIcwq82tQ2wTf44aOHA8HlBMwRI8="
+    crossorigin="anonymous"></script>
 <script>
     const SELECTOR_SIDEBAR_WRAPPER = '.sidebar-wrapper';
     const Default = {
@@ -61,14 +67,7 @@
 
         $('table').DataTable();
     });
-</script>
-<!-- apexcharts -->
-<script
-    src="https://cdn.jsdelivr.net/npm/apexcharts@3.37.1/dist/apexcharts.min.js"
-    integrity="sha256-+vh8GkaU7C9/wbSLIcwq82tQ2wTf44aOHA8HlBMwRI8="
-    crossorigin="anonymous"></script>
-<!-- ChartJS -->
-<script>
+
     const sales_chart_options = {
         series: [{
                 name: 'Digital Goods',
@@ -115,14 +114,15 @@
         },
     };
 
-    const sales_chart = new ApexCharts(
-        document.querySelector('#revenue-chart'),
-        sales_chart_options,
-    );
-    sales_chart.render();
+    const revenueChartEl = document.querySelector('#revenue-chart');
+    if (revenueChartEl) {
+        const sales_chart = new ApexCharts(revenueChartEl, sales_chart_options);
+        sales_chart.render();
+    }
 
-    const donut_chart = new ApexCharts(
-        document.querySelector('#donut-chart'), {
+    const donutChartEl = document.querySelector('#donut-chart');
+    if (donutChartEl) {
+        const donut_chart = new ApexCharts(donutChartEl, {
             series: [44, 55, 13, 43, 22],
             chart: {
                 height: 300,
@@ -132,9 +132,9 @@
                 show: false,
             },
             labels: ['Team A', 'Team B', 'Team C', 'Team D', 'Team E']
-        }
-    );
-    donut_chart.render();
+        });
+        donut_chart.render();
+    }
 </script>
 </body>
 

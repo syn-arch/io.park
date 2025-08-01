@@ -11,6 +11,7 @@ if (isset($_POST['submit'])) {
     $plat_number = $_POST['plat_number'];
     $balance = $_POST['balance'];
     $rfid = $_POST['rfid'];
+    $chat_id = $_POST['chat_id'];
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
     $row = mysqli_query($conn, "INSERT INTO members
@@ -27,6 +28,7 @@ if (isset($_POST['submit'])) {
     '$plat_number',
     '$balance',
     '$rfid',
+    '$chat_id',
     NOW()
     )
     ");
@@ -118,6 +120,10 @@ if (isset($_POST['submit'])) {
                                 <label for="">RFID</label>
                                 <input type="text" class="form-control" name="rfid" value="0" placeholder="RFID">
                             </div>
+                            <div class="mb-3">
+                                <label for="">ID Chat</label>
+                                <input type="text" class="form-control" name="chat_id" value="0" placeholder="ID Chat">
+                            </div>
                         </div>
                     </div>
                 </form>
@@ -145,4 +151,19 @@ if (isset($_POST['submit'])) {
             password_confirmation.setCustomValidity('');
         }
     });
+
+    setInterval(() => {
+        fetch('check.php')
+            .then(res => res.text())
+            .then(res => {
+                if(res == 'false'){
+                    <?php
+                    $setting = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM setting"));
+                    $new_rfid = $setting['new_rfid'];
+                    ?>
+                    console.log('<?php echo $new_rfid ?>')
+                    document.querySelector('input[name="rfid"]').value = '<?php echo $new_rfid ?>';
+                }
+            })
+    }, 1000);
 </script>

@@ -16,6 +16,8 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
     $vehicle_type = $_POST['vehicle_type'];
     $plat_number = $_POST['plat_number'];
+    $rf_id = $_POST['rf_id'];
+    $chat_id = $_POST['chat_id'];
 
     $row = mysqli_query($conn, "INSERT INTO members VALUES(
     '',
@@ -29,12 +31,15 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
     '$vehicle_type',
     '$plat_number',
     0,
+    '$rf_id',
+    '$chat_id',
     NOW()
     )");
 
     $id = mysqli_fetch_assoc(mysqli_query($conn, "SELECT LAST_INSERT_ID() AS id"))['id'];
     $user = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM members WHERE id = $id"));
     $_SESSION['user'] = $user;
+    $_SESSION['role'] = 'member';
     header('Location: index.php?page=dashboard');
     exit();
 }
@@ -140,6 +145,12 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
                     </div>
                     <div class="input-group mb-3">
                         <input name="plat_number" type="text" class="form-control" placeholder="Plat Nomor" />
+                    </div>
+                    <div class="input-group mb-3">
+                        <input name="rf_id" type="text" class="form-control" placeholder="RF ID" />
+                    </div>
+                    <div class="input-group mb-3">
+                        <input name="chat_id" type="text" class="form-control" placeholder="ID Chat" />
                     </div>
                     <div class="input-group mb-3">
                         <input name="email" type="email" class="form-control" placeholder="Email" />
