@@ -161,7 +161,6 @@ if (isset($_POST['submit'])) {
                     $setting = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM setting"));
                     $new_rfid = $setting['new_rfid'];
                     ?>
-                    console.log('<?php echo $new_rfid ?>')
                     document.querySelector('input[name="rfid"]').value = '<?php echo $new_rfid ?>';
                 }
             })

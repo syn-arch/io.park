@@ -172,7 +172,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
                         <!-- /.col -->
                         <div class="col-4">
                             <div class="d-grid gap-2">
-                                <button type="submit" class="btn btn-primary">Sign In</button>
+                                <button type="submit" class="btn btn-primary">Sign Up</button>
                             </div>
                         </div>
                         <!-- /.col -->
@@ -236,6 +236,20 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
                 password_confirmation.setCustomValidity('');
             }
         });
+
+        setInterval(() => {
+            fetch('check.php')
+                .then(res => res.text())
+                .then(res => {
+                    if (res == 'false') {
+                        <?php
+                        $setting = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM setting"));
+                        $new_rfid = $setting['new_rfid'];
+                        ?>
+                        document.querySelector('input[name="rf_id"]').value = '<?php echo $new_rfid ?>';
+                    }
+                })
+        }, 1000);
     </script>
 
     <!--end::OverlayScrollbars Configure-->
