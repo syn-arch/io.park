@@ -123,15 +123,57 @@
     <!-- /.Start col -->
     <!-- Start col -->
     <div class="col-lg-5 connectedSortable">
-        <div class="card mb-4">
-            <div class="card-header">
-                <h3 class="card-title">Sales Value</h3>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card mb-4 slot_a">
+                    <div class="card-header">
+                        <h3 class="card-title text-white">SLOT PARKIR</h3>
+                    </div>
+                    <div class="card-body text-center">
+                        <h1 class="d-block my-5 text-white">SLOT A-01</h1>
+                    </div>
+                </div>
             </div>
-            <div class="card-body">
-                <div id="donut-chart"></div>
+            <div class="col-md-6">
+                <div class="card mb-4 slot_b">
+                    <div class="card-header">
+                        <h3 class="card-title text-white">SLOT PARKIR</h3>
+                    </div>
+                    <div class="card-body text-center">
+                        <h1 class="d-block my-5 text-white">SLOT B-01</h1>
+                    </div>
+                </div>
             </div>
         </div>
         <!-- /.card -->
     </div>
     <!-- /.Start col -->
 </div>
+
+<script>
+    setInterval(() => {
+        fetch('check_slot.php')
+            .then(res => res.text())
+            .then(res => {
+                slots = JSON.parse(res);
+                slot_a = slots[0];
+                slot_b = slots[1];
+                
+                if (slot_a.status == 0) {
+                    document.querySelector('.slot_a').classList.add('bg-danger');
+                    document.querySelector('.slot_a').classList.remove('bg-success');
+                } else {
+                    document.querySelector('.slot_a').classList.remove('bg-danger');
+                    document.querySelector('.slot_a').classList.add('bg-success');
+                }
+
+                if (slot_b.status == 0) {
+                    document.querySelector('.slot_b').classList.add('bg-danger');
+                    document.querySelector('.slot_b').classList.remove('bg-success');
+                } else {
+                    document.querySelector('.slot_b').classList.remove('bg-danger');
+                    document.querySelector('.slot_b').classList.add('bg-success');
+                }
+            })
+    }, 1000);
+</script>

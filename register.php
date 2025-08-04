@@ -241,12 +241,11 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
             fetch('check.php')
                 .then(res => res.text())
                 .then(res => {
-                    if (res == 'false') {
+                    if (res != 'true') {
                         <?php
                         $setting = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM setting"));
-                        $new_rfid = $setting['new_rfid'];
                         ?>
-                        document.querySelector('input[name="rf_id"]').value = '<?php echo $new_rfid ?>';
+                        document.querySelector('input[name="rf_id"]').value = res;
                     }
                 })
         }, 1000);

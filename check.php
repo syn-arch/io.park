@@ -10,5 +10,5 @@ $member = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM members WHERE rf
 if ($member) {
     echo 'true';
 }else{
-    echo 'false';
+    echo $new_rfid;
 }

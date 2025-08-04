@@ -4,12 +4,17 @@ require 'config/conn.php';
 
 if (isset($_GET['rfid'])) {
     $rfid = mysqli_escape_string($conn, $_GET["rfid"]);
+    $sensor = mysqli_escape_string($conn, $_GET["sensor"]);
 
     $entry_time = date('Y-m-d H:i:s');
 
     $member = mysqli_fetch_assoc(
         mysqli_query($conn, "SELECT * FROM members WHERE rfid = '$rfid'")
     );
+
+    if ($sensor == "0") {
+        die("Vehicle Not Found");
+    }
 
     if ($member) {
         $member_id = $member['id'];
@@ -54,31 +59,29 @@ if (isset($_GET['rfid'])) {
             echo "Enter";
         }
     } else {
-        mysqli_query($conn, "UPDATE setting SET id_baru = '$rfid'");
+        mysqli_query($conn, "UPDATE setting SET new_rfid = '$rfid'");
         echo "ID Not Found";
     }
-    $conn->close();
 } else if (isset($_GET['slot_a']) || isset($_GET['slot_b'])) {
     if (isset($_GET['slot_a'])) {
         $plat_a = mysqli_escape_string($conn, $_GET["slot_a"]);
         if ($plat_a == "1") {
-            mysqli_query($conn, "UPDATE parking_slots SET status = 1 WHERE slot_code = 'slot_a' ");
-        } else {
             mysqli_query($conn, "UPDATE parking_slots SET status = 0 WHERE slot_code = 'slot_a' ");
+        } else {
+            mysqli_query($conn, "UPDATE parking_slots SET status = 1 WHERE slot_code = 'slot_a' ");
         }
     }
 
     if (isset($_GET['slot_b'])) {
         $plat_a = mysqli_escape_string($conn, $_GET["slot_b"]);
         if ($plat_a == "1") {
-            mysqli_query($conn, "UPDATE parking_slots SET status = 1 WHERE slot_code = 'slot_b' ");
-        } else {
             mysqli_query($conn, "UPDATE parking_slots SET status = 0 WHERE slot_code = 'slot_b' ");
+        } else {
+            mysqli_query($conn, "UPDATE parking_slots SET status = 1 WHERE slot_code = 'slot_b' ");
         }
     }
 
-    echo "Success!";
-    $conn->close();
+    echo "Slot Updated!";
 } else {
     echo "API Connect!";
 }

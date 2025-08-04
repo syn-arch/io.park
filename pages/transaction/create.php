@@ -6,7 +6,6 @@ if (isset($_POST['submit'])) {
     $exit_time = $_POST['exit_time'];
     $duration = $_POST['duration'];
     $amount = $_POST['amount'];
-    $is_member = $_POST['is_member'];
     $payment_type = $_POST['payment_type'];
     $payment_status = $_POST['payment_status'];
     $handled_by = $_SESSION['user']['id'];
@@ -19,7 +18,6 @@ if (isset($_POST['submit'])) {
     '$exit_time',
     '$duration',
     '$amount',
-    '$is_member',
     '$payment_type',
     '$payment_status',
     '$handled_by',
@@ -82,13 +80,6 @@ if (isset($_POST['submit'])) {
                             <div class="mb-3">
                                 <label for="">Total</label>
                                 <input type="number" class="form-control" name="amount" placeholder="Total">
-                            </div>
-                            <div class="mb-3">
-                                <label for="">Member</label>
-                                <select name="is_member" id="" class="form-control">
-                                    <option value="0">Tidak</option>
-                                    <option value="1">Ya</option>
-                                </select>
                             </div>
                             <div class="mb-3">
                                 <label for="">Pembayaran</label>

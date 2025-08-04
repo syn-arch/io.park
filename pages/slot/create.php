@@ -48,8 +48,8 @@ if (isset($_POST['submit'])) {
                             <div class="mb-3">
                                 <label for="">Status</label>
                                 <select name="status" class="form-control">
-                                    <option value="1">Aktif</option>
-                                    <option value="0">Tidak Aktif</option>
+                                    <option value="1">Tersedia</option>
+                                    <option value="0">Tidak Tersedia</option>
                                 </select>
                             </div>
                             <div class="mb-3">

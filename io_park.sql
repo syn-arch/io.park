@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Aug 01, 2025 at 07:27 PM
+-- Generation Time: Aug 04, 2025 at 03:11 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.28
 
@@ -49,7 +49,7 @@ CREATE TABLE `members` (
 --
 
 INSERT INTO `members` (`id`, `name`, `address`, `gender`, `phone`, `email`, `password`, `status`, `vehicle_type`, `plat_number`, `balance`, `rfid`, `chat_id`, `created_at`) VALUES
-(1, 'Diaz', 'Bandung', 'Laki-Laki', '08123456789', 'dias@gmail.com', '$2y$10$FJdX.zMZLqyZd6JKYZK/HOCVwdrirql8sq0VuAzcZS0Btoo/fos.e', 1, 'Roda Dua', 'D 3755 ZDR', 100000, '43 70 18 2', '926558171', '2025-07-28 00:30:00');
+(1, 'Diaz', 'Bandung', 'Laki-Laki', '08123456789', 'dias@gmail.com', '$2y$10$FJdX.zMZLqyZd6JKYZK/HOCVwdrirql8sq0VuAzcZS0Btoo/fos.e', 1, 'Roda Dua', 'D 3755 ZDR', 76000, '43 70 18 2', '926558171', '2025-07-28 00:30:00');
 
 -- --------------------------------------------------------
 
@@ -117,8 +117,8 @@ CREATE TABLE `parking_slots` (
 --
 
 INSERT INTO `parking_slots` (`id`, `slot_code`, `name`, `status`, `updated_at`) VALUES
-(1, 'slot_a', 'A-01', 0, '2025-07-28 00:54:47'),
-(3, 'slot_b', 'A-02', 0, '2025-07-29 14:33:40');
+(1, 'slot_a', 'A-01', 1, '2025-07-28 00:54:47'),
+(3, 'slot_b', 'A-02', 1, '2025-07-29 14:33:40');
 
 -- --------------------------------------------------------
 
@@ -136,8 +136,26 @@ CREATE TABLE `parking_transactions` (
   `payment_type` varchar(255) DEFAULT NULL,
   `payment_status` varchar(255) DEFAULT NULL,
   `handled_by` int(11) NOT NULL,
-  `created_at` datetime NOT NULL
+  `created_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `parking_transactions`
+--
+
+INSERT INTO `parking_transactions` (`id`, `member_id`, `entry_time`, `exit_time`, `duration`, `amount`, `payment_type`, `payment_status`, `handled_by`, `created_at`) VALUES
+(25, 1, '2025-08-03 22:28:22', '2025-08-03 22:28:45', '0 hari, 0 jam, 0 menit', 2000, 'Mandiri', 'Berhasil', 1, '2025-08-03 22:28:22'),
+(26, 1, '2025-08-03 22:36:19', '2025-08-03 22:36:39', '0 hari, 0 jam, 0 menit', 2000, 'Mandiri', 'Berhasil', 1, '2025-08-03 22:36:19'),
+(27, 1, '2025-08-03 22:36:53', '2025-08-03 22:37:58', '0 hari, 0 jam, 1 menit', 2000, 'Mandiri', 'Berhasil', 1, '2025-08-03 22:36:53'),
+(28, 1, '2025-08-03 22:38:09', '2025-08-03 22:38:27', '0 hari, 0 jam, 0 menit', 2000, 'Mandiri', 'Berhasil', 1, '2025-08-03 22:38:09'),
+(29, 1, '2025-08-03 22:38:48', '2025-08-03 22:39:00', '0 hari, 0 jam, 0 menit', 2000, 'Mandiri', 'Berhasil', 1, '2025-08-03 22:38:48'),
+(30, 1, '2025-08-03 22:41:48', '2025-08-03 22:41:59', '0 hari, 0 jam, 0 menit', 2000, 'Mandiri', 'Berhasil', 1, '2025-08-03 22:41:48'),
+(31, 1, '2025-08-03 22:49:09', '2025-08-03 22:49:49', '0 hari, 0 jam, 0 menit', 2000, 'Mandiri', 'Berhasil', 1, '2025-08-03 22:49:09'),
+(32, 1, '2025-08-03 22:50:00', '2025-08-03 22:51:47', '0 hari, 0 jam, 1 menit', 2000, 'Mandiri', 'Berhasil', 1, '2025-08-03 22:50:00'),
+(33, 1, '2025-08-03 22:51:58', '2025-08-03 22:54:49', '0 hari, 0 jam, 2 menit', 2000, 'Mandiri', 'Berhasil', 1, '2025-08-03 22:51:58'),
+(34, 1, '2025-08-03 23:13:04', '2025-08-03 23:13:20', '0 hari, 0 jam, 0 menit', 2000, 'Mandiri', 'Berhasil', 1, '2025-08-03 23:13:04'),
+(35, 1, '2025-08-03 23:13:31', '2025-08-03 23:13:42', '0 hari, 0 jam, 0 menit', 2000, 'Mandiri', 'Berhasil', 1, '2025-08-03 23:13:31'),
+(36, 1, '2025-08-03 23:17:59', '2025-08-03 23:18:12', '0 hari, 0 jam, 0 menit', 2000, 'Mandiri', 'Berhasil', 1, '2025-08-03 23:17:59');
 
 -- --------------------------------------------------------
 
@@ -161,7 +179,7 @@ CREATE TABLE `setting` (
 --
 
 INSERT INTO `setting` (`id`, `app_name`, `app_description`, `app_logo`, `telegram_bot_key`, `new_rfid`, `created_at`, `updated_at`) VALUES
-(1, 'io.Park', 'Cool Smart Parking', 'logo-1753637109.png', '8294493284:AAFDV_z_A0hC1mk85UTQM8NuCJgQcQjB-no', '123', '2025-07-25 17:30:17', '2025-07-25 17:30:17');
+(1, 'io.Park', 'Cool Smart Parking', 'logo-1753637109.png', '8294493284:AAFDV_z_A0hC1mk85UTQM8NuCJgQcQjB-no', '83 72 a5 2c', '2025-07-25 17:30:17', '2025-07-25 17:30:17');
 
 -- --------------------------------------------------------
 
@@ -243,7 +261,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `members`
 --
 ALTER TABLE `members`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `member_topups`
@@ -267,7 +285,7 @@ ALTER TABLE `parking_slots`
 -- AUTO_INCREMENT for table `parking_transactions`
 --
 ALTER TABLE `parking_transactions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `setting`
